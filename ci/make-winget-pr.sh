@@ -14,7 +14,7 @@ git checkout -b "$TAG_NAME" upstream/master
 
 exehash=$(sha256sum -b ../$setup_exe | cut -f1 -d' ' | tr a-f A-F)
 
-release_date=$(git show -s "--format=%cd" "--date=format:%Y-%m-%d")
+release_date=$(git rev-list -1 --no-commit-header "--format=%cd" "--date=format:%Y-%m-%d" HEAD)
 
 # Create the directory structure
 mkdir manifests/w/wezterm/wezterm/$TAG_NAME

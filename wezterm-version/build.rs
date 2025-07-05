@@ -31,12 +31,13 @@ fn main() {
 
             if let Ok(output) = std::process::Command::new("git")
                 .args(&[
-                    "-c",
-                    "core.abbrev=8",
-                    "show",
-                    "-s",
+                    "rev-list",
+                    "-1",
+                    "--no-commit-header",
+                    "--abbrev=8",
                     "--format=%cd-%h",
                     "--date=format:%Y%m%d-%H%M%S",
+                    "HEAD",
                 ])
                 .output()
             {

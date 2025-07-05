@@ -4,7 +4,7 @@ set -e
 
 TARGET_DIR=${1:-target}
 
-TAG_NAME=${TAG_NAME:-$(git -c "core.abbrev=8" show -s "--format=%cd-%h" "--date=format:%Y%m%d-%H%M%S")}
+TAG_NAME=${TAG_NAME:-$(git rev-list -1 --no-commit-header --abbrev=8 "--format=%cd-%h" "--date=format:%Y%m%d-%H%M%S" HEAD)}
 
 HERE=$(pwd)
 
@@ -144,7 +144,7 @@ case $OSTYPE in
 
         # Set up variables for spec generation
         if test -n "${COPR_SRPM}" ; then
-          TAR_NAME=$(git -c "core.abbrev=8" show -s "--format=%cd_%h" "--date=format:%Y%m%d_%H%M%S")
+          TAR_NAME=$(git rev-list -1 --no-commit-header --abbrev=8 "--format=%cd_%h" "--date=format:%Y%m%d_%H%M%S" HEAD)
           HERE="."
           BUILD_SECTION=$(cat <<'BUILDEOFEOF'
 %prep

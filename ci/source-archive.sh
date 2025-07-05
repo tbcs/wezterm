@@ -3,7 +3,7 @@
 
 set -x
 
-TAG_NAME=${TAG_NAME:-$(git -c "core.abbrev=8" show -s "--format=%cd-%h" "--date=format:%Y%m%d-%H%M%S")}
+TAG_NAME=${TAG_NAME:-$(git rev-list -1 --no-commit-header --abbrev=8 "--format=%cd-%h" "--date=format:%Y%m%d-%H%M%S" HEAD)}
 
 if [[ "$BUILD_REASON" == "Schedule" ]] ; then
   TAR_NAME=wezterm-nightly-src.tar
@@ -12,7 +12,7 @@ else
 fi
 
 if test -n "${COPR_SRPM}" ; then
-  TAG_NAME=$(git -c "core.abbrev=8" show -s "--format=%cd_%h" "--date=format:%Y%m%d_%H%M%S")
+  TAG_NAME=$(git rev-list -1 --no-commit-header --abbrev=8 "--format=%cd_%h" "--date=format:%Y%m%d_%H%M%S" HEAD)
   TAR_NAME=wezterm-${TAG_NAME}.tar
 fi
 

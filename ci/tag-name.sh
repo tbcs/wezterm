@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-git -c "core.abbrev=8" show -s "--format=%cd-%h" "--date=format:%Y%m%d-%H%M%S"
+git rev-list -1 --no-commit-header --abbrev=8 "--format=%cd-%h" "--date=format:%Y%m%d-%H%M%S" HEAD

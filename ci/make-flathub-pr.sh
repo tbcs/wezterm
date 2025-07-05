@@ -26,7 +26,7 @@ SHA256=$(sha256sum wezterm*-src.tar.gz | cut -d' ' -f1)
 
 sed -e "s,@URL@,$URL,g" -e "s/@SHA256@/$SHA256/g" < assets/flatpak/org.wezfurlong.wezterm.RELEASE-TEMPLATE.json > flathub/org.wezfurlong.wezterm.json
 
-RELEASE_DATE=$(git -c "core.abbrev=8" show -s "--format=%cd" "--date=format:%Y-%m-%d")
+RELEASE_DATE=$(git rev-list -1 --no-commit-header --abbrev=8 "--format=%cd" "--date=format:%Y-%m-%d" HEAD)
 sed -e "s,@TAG_NAME@,$TAG_NAME,g" -e "s/@DATE@/$RELEASE_DATE/g" < assets/flatpak/org.wezfurlong.wezterm.appdata.RELEASE-TEMPLATE.xml > flathub/org.wezfurlong.wezterm.appdata.xml
 
 cd flathub
