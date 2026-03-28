@@ -1,3 +1,16 @@
+This version of WezTerm uses a custom icon.
+
+Build a `.deb` package on Debian/Ubuntu:
+
+```sh
+# 1. Build in RELEASE mode. `ci/deploy.sh` reads binaries from target/release/,
+#    so a plain `make build` (which is a debug build) is not enough.
+make build BUILD_OPTS="--release"
+
+# 2. Package. This creates a `.deb` in the root folder.
+ci/deploy.sh
+```
+
 # Wez's Terminal
 
 <img height="128" alt="WezTerm Icon" src="https://raw.githubusercontent.com/wezterm/wezterm/main/assets/icon/wezterm-icon.svg" align="left"> *A GPU-accelerated cross-platform terminal emulator and multiplexer written by <a href="https://github.com/wez">@wez</a> and implemented in <a href="https://www.rust-lang.org/">Rust</a>*
